@@ -429,6 +429,7 @@ typedef struct FILTER {
 #define EF_SUSTAIN      2
 #define EF_LOOP         4
 #define EF_VOLENV       8
+#define EF_ITMODE       16
 
 /* New Note Action Flags */
 #define NNA_CUT         0
@@ -470,12 +471,12 @@ typedef struct ENVPR {
     UBYTE  pts;     /* number of envelope points */
     UBYTE  susbeg;  /* envelope sustain index begin */
     UBYTE  susend;  /* envelope sustain index end */
-    BOOL   susactive;/* whether sustain is active (no interpolation) */
-    UBYTE  beg;     /* envelope loop begin */
-    UBYTE  end;     /* envelope loop end */
-    SWORD  p;       /* current envelope counter */
+    UBYTE  loopbeg; /* envelope loop begin */
+    UBYTE  loopend; /* envelope loop end */
+    SWORD  tick;    /* current envelope counter */
     UWORD  index;   /* envelope index for the point after the current one */
     SWORD  lastval; /* the last calculated value */
+    BOOL   interpolate;/* whether to interpolate */
     ENVPT* env;     /* envelope points */
 } ENVPR;
 
