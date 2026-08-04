@@ -316,6 +316,7 @@ static BOOL loadinstr6(void)
 		i-> name##susend=_mm_read_UBYTE(modreader);						\
 		i-> name##beg=_mm_read_UBYTE(modreader);						\
 		i-> name##end=_mm_read_UBYTE(modreader);						\
+		if (i-> name##pts > ENVPOINTS) goto fail;				\
 		for(w=0;w<(universion>=0x100?32:i-> name##pts);w++) {			\
 			i-> name##env[w].pos=_mm_read_M_SWORD(modreader);			\
 			i-> name##env[w].val=_mm_read_M_SWORD(modreader);			\
@@ -328,6 +329,7 @@ static BOOL loadinstr6(void)
 		i-> name/**/susend=_mm_read_UBYTE(modreader);					\
 		i-> name/**/beg=_mm_read_UBYTE(modreader);						\
 		i-> name/**/end=_mm_read_UBYTE(modreader);						\
+		if (i-> name/**/pts > ENVPOINTS) goto fail;				\
 		for (w=0;w<(universion>=0x100?32:i-> name/**/pts);w++) {		\
 			i-> name/**/env[w].pos=_mm_read_M_SWORD(modreader);			\
 			i-> name/**/env[w].val=_mm_read_M_SWORD(modreader);			\
@@ -349,6 +351,7 @@ static BOOL loadinstr6(void)
 		i->insname=readstring();
 
 		if(_mm_eof(modreader)) {
+		fail:
 			_mm_errno = MMERR_LOADING_SAMPLEINFO;
 			return 0;
 		}

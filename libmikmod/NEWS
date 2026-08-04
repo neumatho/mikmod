@@ -3,6 +3,8 @@ Summary of changes between libmikmod 3.3.13 and libmikmod 3.3.14:
 
 libmikmod v3.3.14 was released on ???. ??, ????.
 
+- Fix out-of-bounds writes in unimod version 6 loader with crafted
+  files (thanks to Dominik Riedweg for the bug report)
 - Add bounding checks for DSMI AMF channel remap table.
 - Added Windows WASAPI output driver, thanks to Stephane Denis.
 - Added Playstation Vita output driver, thanks to Matthieu Milan and
